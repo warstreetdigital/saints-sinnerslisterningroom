@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saints n Sinners — Branded Audio Identity Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Inter, sans-serif;
+    background:#0b0b0b;
+    color:#f5f5f5;
+    min-height:100vh;
+    user-select:none;
+    overflow-x:hidden;
+}
+.overlay-lock{
+    position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(circle at center, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+    z-index:2;
+}
+.header{
+    padding:90px 24px 70px;
+    text-align:center;
+    position:relative;
+}
+.header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(207,162,74,0.18) 85%, rgba(207,162,74,0.35) 100%);
+    z-index:0;
+}
+.header > *{position:relative; z-index:1;}
+.header h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:42px;
+    margin:0;
+    letter-spacing:2px;
+}
+.header p{
+    margin-top:10px;
+    color:#bbb;
+    font-size:15px;
+}
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 20px 100px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+.card{
+    background:linear-gradient(180deg,#141414,#0f0f0f);
+    border-radius:22px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 25px 60px rgba(0,0,0,0.75);
+    position:relative;
+    overflow:hidden;
+}
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:
+      radial-gradient(circle at bottom center, rgba(255,170,90,0.25), transparent 45%),
+      radial-gradient(circle at top center, rgba(255,200,120,0.10), transparent 50%),
+      radial-gradient(circle at left center, rgba(255,180,120,0.12), transparent 55%),
+      radial-gradient(circle at right center, rgba(255,180,120,0.12), transparent 55%);
+    z-index:0;
+}
+.card > *{position:relative; z-index:1;}
+.card::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.03),transparent);
+    opacity:0;transition:.6s;
+}
+.card:hover::after{opacity:1}
+.mode{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#aaa;
+}
+.title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    margin:6px 0 8px;
+}
+.desc{
+    font-size:13px;
+    color:#bbb;
+    line-height:1.5;
+}
+.controls{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+.play{
+    width:54px;height:54px;border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(0,0,0,0.6);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:18px;
+}
+.progress-wrap{
+    flex:1;height:6px;background:#222;border-radius:6px;overflow:hidden;
+}
+.progress{
+    height:100%;width:0%;background:linear-gradient(90deg,#cfa24a,#fff);
+}
+.footer{
+    text-align:center;
+    padding:40px 20px;
+    font-size:11px;
+    color:#777;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+@keyframes ambientPulse{
+  0%{opacity:0.6; filter:blur(0px)}
+  50%{opacity:1; filter:blur(2px)}
+  100%{opacity:0.6; filter:blur(0px)}
+}
+@keyframes heroGlow{
+  0%{box-shadow:0 40px 80px rgba(207,162,74,0.25), 0 20px 40px rgba(0,0,0,0.9)}
+  50%{box-shadow:0 50px 120px rgba(255,180,120,0.45), 0 25px 50px rgba(0,0,0,0.95)}
+  100%{box-shadow:0 40px 80px rgba(207,162,74,0.25), 0 20px 40px rgba(0,0,0,0.9)}
+}
+.card::before{animation:ambientPulse 8s ease-in-out infinite;}
+.hero-base{animation:heroGlow 10s ease-in-out infinite;}
+</style>
+</head>
+<body>
+<div class="overlay-lock"></div><div class="header">
+    <h1>SAINTS N SINNERS</h1>
+    <p>Branded Audio Identity Demo · Curated Playlist Experience · Proposal Presentation</p><!-- Hero Card Shadow Base -->
+<div class="hero-base" style="margin:60px auto 0;max-width:520px;height:80px;border-radius:24px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
+    box-shadow:0 40px 80px rgba(207,162,74,0.45), 0 20px 40px rgba(0,0,0,0.9);">
+</div>
+
+</div>
+</div><div class="container"><!-- 1 --><div class="card">
+    <div class="mode">Arrival Mode</div>
+    <div class="title">Velvet Arrival</div>
+    <div class="desc">Luxury entry soundscape. First impression identity. Premium arrival energy.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a1',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p1"></div></div>
+    </div>
+    <audio id="a1" src="/VelvetArrival.mp3"></audio>
+</div><!-- 2 --><div class="card">
+    <div class="mode">City Identity Mode</div>
+    <div class="title">Sweet Joina City Spot</div>
+    <div class="desc">Local branding anchor. Location identity sound signature.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a2',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p2"></div></div>
+    </div>
+    <audio id="a2" src="/SweetJoinaCitySpot.mp3"></audio>
+</div><!-- 3 --><div class="card">
+    <div class="mode">Brand Core Mode</div>
+    <div class="title">Ama Saints & Sinners</div>
+    <div class="desc">Core brand identity sound. Saints n Sinners signature DNA.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a3',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p3"></div></div>
+    </div>
+    <audio id="a3" src="/AmaSaints&Sinners.mp3"></audio>
+</div><!-- 4 --><div class="card">
+    <div class="mode">Groove Activation</div>
+    <div class="title">Feel The Groove</div>
+    <div class="desc">Energy lift. Social activation. Movement and vibe elevation.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a4',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p4"></div></div>
+    </div>
+    <audio id="a4" src="/FeelTheGroove.mp3"></audio>
+</div><!-- 5 --><div class="card">
+    <div class="mode">Dual Identity Mode</div>
+    <div class="title">Saints Flow · Sinners</div>
+    <div class="desc">Balanced brand philosophy. Elegant yet energetic sound identity.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a5',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p5"></div></div>
+    </div>
+    <audio id="a5" src="/SaintsFlowSinners.mp3"></audio>
+</div><!-- 6 --><div class="card">
+    <div class="mode">Saints Lounge Mode</div>
+    <div class="title">Only Saints</div>
+    <div class="desc">Clean, classy, premium lounge atmosphere.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a6',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p6"></div></div>
+    </div>
+    <audio id="a6" src="/OnlySaints.mp3"></audio>
+</div><!-- 7 --><div class="card">
+    <div class="mode">Premium Lounge Mode</div>
+    <div class="title">Saxo Piano Hour</div>
+    <div class="desc">Instrumental luxury. Conversations, cocktails, refinement.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a7',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p7"></div></div>
+    </div>
+    <audio id="a7" src="/SaxoPianoHour.mp3"></audio>
+</div><!-- 8 --><div class="card">
+    <div class="mode">Sunset Mode</div>
+    <div class="title">Sunset</div>
+    <div class="desc">Wind-down finale. Memory imprint. Emotional closure.</div>
+    <div class="controls">
+        <div class="play" onclick="toggle('a8',this)">▶</div>
+        <div class="progress-wrap"><div class="progress" id="p8"></div></div>
+    </div>
+    <audio id="a8" src="/Sunset.mp3"></audio>
+</div></div></div><!-- PRESENTATION SECTION --><div class="container" style="grid-template-columns:1fr;"><div class="card">
+    <div class="mode">Why This Matters</div>
+    <div class="title">Music Is Not Background Noise — It Is Brand Infrastructure</div>
+    <div class="desc">
+        Customers don’t remember drinks. They remember how a place made them feel.  
+        Branded playlists turn atmosphere into identity, identity into memory, and memory into loyalty.  
+        This system positions Saints n Sinners as an experience brand — not just a venue.
+    </div>
+</div><div class="card">
+    <div class="mode">Business Impact</div>
+    <div class="title">What Branded Audio Actually Does</div>
+    <div class="desc">
+        • Increases average customer stay time  
+        • Improves mood and energy consistency  
+        • Creates emotional brand association  
+        • Strengthens venue identity  
+        • Builds customer loyalty through memory imprinting  
+        • Separates Saints n Sinners from generic nightlife spaces
+    </div>
+</div><div class="card">
+    <div class="mode">Where It Is Used</div>
+    <div class="title">Playlist Deployment Zones</div>
+    <div class="desc">
+        • Entrance & arrival atmosphere  
+        • Bar service hours  
+        • Lounge seating areas  
+        • Cocktail hours  
+        • VIP sections  
+        • Early evening ambience  
+        • Late night wind‑down sessions  
+        • Private events  
+        • Brand activations  
+        • Themed nights
+    </div>
+</div><div class="card">
+    <div class="mode">Brand Strategy</div>
+    <div class="title">From Venue to Brand Experience</div>
+    <div class="desc">
+        This playlist system transforms Saints n Sinners from a place people visit into a brand people remember.  
+        Music becomes part of your identity system — just like logos, lighting, interior design and service.
+    </div>
+</div><div class="card">
+    <div class="mode">Commercial Model</div>
+    <div class="title">This Is Not a Playlist — It Is a Service</div>
+    <div class="desc">
+        This is a branded audio system that can be expanded into:  
+        • Monthly sound curation service  
+        • Seasonal playlist updates  
+        • Event‑based sound design  
+        • Brand sound identity ownership  
+        • Exclusive venue audio branding
+    </div>
+</div><div class="card">
+    <div class="mode">Proposal</div>
+    <div class="title">Partnership Vision</div>
+    <div class="desc">
+        This demo represents a long‑term sound partnership model.  
+        Saints n Sinners becomes the first branded‑audio nightlife identity in Harare — not just a bar with music,  
+        but a venue with a defined sonic brand.
+    </div>
+</div></div><div class="footer">
+    © 2026 · Saints n Sinners Branded Audio System · Demo Presentation · All Rights Reserved
+</div><script>
+// Lock interactions
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = function(e){
+ if(e.keyCode==123) return false;
+ if(e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) return false;
+ if(e.ctrlKey && e.key.toLowerCase()=='u') return false;
+};
+document.body.onselectstart = () => false;
+document.body.ondragstart = () => false;
+
+const audios = ['a1','a2','a3','a4','a5','a6','a7','a8'];
+
+function toggle(id,btn){
+ audios.forEach(a=>{
+   if(a!==id){
+     const o=document.getElementById(a);
+     o.pause();o.currentTime=0;
+   }
+ });
+ const audio=document.getElementById(id);
+ if(audio.paused){audio.play();btn.innerHTML='⏸';}
+ else{audio.pause();btn.innerHTML='▶';}
+}
+
+setInterval(()=>{
+ audios.forEach((id,i)=>{
+   const a=document.getElementById(id);
+   const p=document.getElementById('p'+(i+1));
+   if(a.duration){p.style.width=(a.currentTime/a.duration*100)+'%';}
+ });
+},200);
+</script></body>
+</html>
